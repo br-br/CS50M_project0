@@ -41,10 +41,16 @@ function newTodo() {
 
 function createTodoItem(name) {
 
-  console.log(name)
+  const todoTextSpan = document.createElement('span')
+  todoTextSpan.className = classNames.TODO_TEXT
+  todoTextSpan.setAttribute('contenteditable', 'true')
+  todoTextSpan.innerHTML = name || 'Unnamed TODO'
+
+
 
   const li = document.createElement('li')
   li.className = classNames.TODO_ITEM
+  li.appendChild(todoTextSpan)
 
   return li
 }
