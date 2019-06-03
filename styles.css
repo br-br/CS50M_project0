@@ -76,3 +76,9 @@ ul {
   font-size: smaller;
   font-style: italic;
 }
+
+.btn-delete {
+  color: crimson;
+  font-size: larger;
+  float: right;
+}

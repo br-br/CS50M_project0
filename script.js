@@ -5,6 +5,7 @@ const classNames = {
   TODO_DELETE: 'todo-delete',
   TODO_TEXT: 'todo-text',
   TODO_REF: 'todo-ref',
+  DELETE_BUTTON: 'btn-delete'
 }
 
 const list = document.getElementById('todo-list')
@@ -55,17 +56,31 @@ function createTodoItem(name) {
   refSpan.className = classNames.TODO_REF
   refSpan.innerHTML = ' (ref: ' + itemRef + ')'
 
+  const deleteButton = document.createElement('button')
+  deleteButton.innerHTML = 'X'
+  deleteButton.className = classNames.DELETE_BUTTON
+  deleteButton.onclick = removeTodo
+  deleteButton.ref = itemRef
 
 
   const li = document.createElement('li')
   li.className = classNames.TODO_ITEM
+  li.setAttribute('id', itemRef);
   li.appendChild(checkbox)
   li.appendChild(todoTextSpan)
   li.appendChild(refSpan)
+  li.appendChild(deleteButton)
 
   return li
 }
 
 function toggleCheckbox() {
   updateUncheckedCount(this.checked ? -1 : 1)
+}
+
+function removeTodo() {
+  console.log('remove item clicked, ref is: ' + this.ref)
+
+  const toRemove = document.getElementById(this.ref)
+  list.removeChild(toRemove)
 }
