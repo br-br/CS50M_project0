@@ -33,15 +33,20 @@ function updateItemRef() {
 function newTodo() {
   let name = prompt("Give your task a name. (You may edit it later...)", "Do Something New...")
 
-  const todo = createTodoItem(name)
-  list.appendChild(todo)
-  updateItemCount(1)
-  updateUncheckedCount(1)
-  updateItemRef()
+  // only create newTodo if user didn't click on "cancel"
+  if (name) {
+    const todo = createTodoItem(name)
+    list.appendChild(todo)
+    updateItemCount(1)
+    updateUncheckedCount(1)
+    updateItemRef()
+  }
 }
 
 function createTodoItem(name) {
-
+  if (!name) {
+    return
+  }
   const checkbox = document.createElement('input')
   checkbox.className = classNames.TODO_CHECKBOX
   checkbox.type = 'checkbox'
@@ -52,6 +57,7 @@ function createTodoItem(name) {
   todoTextSpan.setAttribute('contenteditable', 'true')
   todoTextSpan.innerHTML = name || 'Unnamed TODO'
 
+  // keep track of the TODOs references
   const refSpan = document.createElement('span')
   refSpan.className = classNames.TODO_REF
   refSpan.innerHTML = ' (ref: ' + itemRef + ')'
@@ -72,6 +78,7 @@ function createTodoItem(name) {
   li.appendChild(deleteButton)
 
   return li
+
 }
 
 function toggleCheckbox() {
@@ -79,8 +86,9 @@ function toggleCheckbox() {
 }
 
 function removeTodo() {
-  console.log('remove item clicked, ref is: ' + this.ref)
-
   const toRemove = document.getElementById(this.ref)
   list.removeChild(toRemove)
+
+  updateItemCount(-1)
+  updateUncheckedCount(!toRemove.firstChild.checked ? -1 : 0)
 }
