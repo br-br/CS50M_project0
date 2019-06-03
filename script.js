@@ -15,13 +15,13 @@ let itemCount = 0
 let uncheckedCount = 0
 let itemRef = 0
 
-function updateItemCount(difference) {
-  itemCount += difference
+function updateItemCount(change) {
+  itemCount += change
   itemCountSpan.innerHTML = itemCount
 }
 
-function updateUncheckedCount(difference) {
-  uncheckedCount += difference
+function updateUncheckedCount(change) {
+  uncheckedCount += change
   uncheckedCountSpan.innerHTML = uncheckedCount
 }
 
@@ -51,12 +51,17 @@ function createTodoItem(name) {
   todoTextSpan.setAttribute('contenteditable', 'true')
   todoTextSpan.innerHTML = name || 'Unnamed TODO'
 
+  const refSpan = document.createElement('span')
+  refSpan.className = classNames.TODO_REF
+  refSpan.innerHTML = ' (ref: ' + itemRef + ')'
+
 
 
   const li = document.createElement('li')
   li.className = classNames.TODO_ITEM
   li.appendChild(checkbox)
   li.appendChild(todoTextSpan)
+  li.appendChild(refSpan)
 
   return li
 }
