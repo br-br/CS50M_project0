@@ -30,3 +30,24 @@ Good luck!
 If you finish early and are up for a challenge, try adding delete functionality.
 This should be in the form of a button within each TODO that removes that TODO
 when clicked. 
+
+
+## My Solution (Description)
+
+### My changes to index.html:
+I added the charset meta tag to specify the encoding - otherwise we get an error in the console.
+I also added the html language tag and the viewport meta tag (responsivness) according to W3C recommandations.
+
+### My changes to styles.css:
+I set the font-family for the entire project to sans-serif and added the classes todo-text, todo-ref and btn-delete.
+
+### My changes to script.js
+I introduced the variables itemCount, uncheckedCount and itemRef.
+I use a prompt to ask the user for a todo name.
+If the user cancels, nothing happens. If the user clicks on "ok", a todoItem, a li element, is created and added to the DOM as a child of the list (ul) and itemCount and checkedItemCount are updated.
+The li element contains the following children:
+- a checkbox → a click changes the uncheckedCount variable
+- a span for the name of the todo item
+- a span for the (unique) reference of the todoItem, used to implement the item removal functionality
+- a delete button → a click removes the item from the list and updates itemCount and uncheckedItemCount
+
