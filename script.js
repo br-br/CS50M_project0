@@ -41,6 +41,11 @@ function newTodo() {
 
 function createTodoItem(name) {
 
+  const checkbox = document.createElement('input')
+  checkbox.className = classNames.TODO_CHECKBOX
+  checkbox.type = 'checkbox'
+  checkbox.onchange = toggleCheckbox
+
   const todoTextSpan = document.createElement('span')
   todoTextSpan.className = classNames.TODO_TEXT
   todoTextSpan.setAttribute('contenteditable', 'true')
@@ -50,7 +55,12 @@ function createTodoItem(name) {
 
   const li = document.createElement('li')
   li.className = classNames.TODO_ITEM
+  li.appendChild(checkbox)
   li.appendChild(todoTextSpan)
 
   return li
+}
+
+function toggleCheckbox() {
+  updateUncheckedCount(this.checked ? -1 : 1)
 }
