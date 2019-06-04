@@ -66,7 +66,6 @@ function createTodoItem(name) {
   deleteButton.onclick = removeTodo
   deleteButton.ref = itemRef
 
-
   const li = document.createElement('li')
   li.className = classNames.TODO_ITEM
   li.setAttribute('id', itemRef);
