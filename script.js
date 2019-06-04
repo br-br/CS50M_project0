@@ -2,8 +2,6 @@ const classNames = {
   TODO_ITEM: 'todo-container',
   TODO_CHECKBOX: 'todo-checkbox',
   TODO_TEXT: 'todo-text',
-  TODO_DELETE: 'todo-delete',
-  TODO_TEXT: 'todo-text',
   TODO_REF: 'todo-ref',
   DELETE_BUTTON: 'btn-delete'
 }
@@ -78,7 +76,6 @@ function createTodoItem(name) {
   li.appendChild(deleteButton)
 
   return li
-
 }
 
 function toggleCheckbox() {
